@@ -1,0 +1,11 @@
+.header{
+    background-color: #2A2A2A;
+    color: white;
+    height: 3rem;
+    padding: .5rem;
+    text-align: center;
+}
+
+.lg-header {
+    height: 40px;
+}
