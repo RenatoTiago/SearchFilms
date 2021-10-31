@@ -8,36 +8,34 @@ import Search from "./components/Search";
 import { GetSearchMulti } from "./services";
 
 
-const App = () =>{
+const App = () => {
   const [list, setList] = useState(null);
-  const [search,setSearch] = useState('');
+  const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [itemSelected, setItemSelected] = useState(null);
   const [open, setOpen] = useState(false)
 
-  const handleSelectPage = (evt,value) => {
+  const handleSelectPage = (evt, value) => {
     setPage(value);
 
     GetSearchMulti(search, page)
-        .then( data => {
-          console.log(data)
-            setList(data.results)
-            setTotalPages(data.total_pages)
-        })
+      .then(data => {
+        setList(data.results)
+        setTotalPages(data.total_pages)
+      })
   }
 
- 
   return (
     <Box >
-      <Nav/>
-      <Search setList={setList} search={search} setSearch={setSearch} setTotalPages={setTotalPages}/>
-      <ListResult list={list} setItemSelected={setItemSelected} setOpen={setOpen}/>
-      <ModalDetails open={open} setOpen={setOpen} itemSelected={itemSelected}/>
-      <Box display={!!list?"flex": "none"} justifyContent="center" mb={3}>
+      <Nav />
+      <Search setList={setList} search={search} setSearch={setSearch} setTotalPages={setTotalPages} />
+      <ListResult list={list} setItemSelected={setItemSelected} setOpen={setOpen} />
+      <ModalDetails open={open} setOpen={setOpen} itemSelected={itemSelected} />
+      <Box display={!!list ? "flex" : "none"} justifyContent="center" mb={3}>
         <Pagination count={totalPages} page={page} onChange={handleSelectPage} />
       </Box>
-      
+
     </Box>
   );
 }

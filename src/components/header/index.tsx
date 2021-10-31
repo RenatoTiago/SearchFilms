@@ -7,7 +7,6 @@ const Nav = () => {
             <div>
                 <img className="lg-header" src="https://carreiras.mxt.com.br/wp-content/uploads/2020/12/logo_mxtholding-1024x398.png" alt="mxt"/>
             </div>
-           
         </Box>
     )
 }

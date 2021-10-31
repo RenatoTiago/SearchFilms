@@ -4,31 +4,29 @@ import DetailsMovie from "./DetailsMovie";
 import DetailsPerson from "./DetailsPerson";
 import DetailsTV from "./DetailsTV";
 
-type TProps ={
+type TProps = {
     showItem: any,
     type: any
 }
 
-const ShowDetails:FunctionComponent<TProps> =({showItem, type}) =>{
+const ShowDetails: FunctionComponent<TProps> = ({ showItem, type }) => {
 
-      let pageDetails
-      
-    if(type === 'tv'){
-        pageDetails = <DetailsTV showItem={showItem}/>
+    let pageDetails
+
+    if (type === 'tv') {
+        pageDetails = <DetailsTV showItem={showItem} />
     }
-    else if(type === 'movie'){
-        pageDetails = <DetailsMovie showItem={showItem}/>
+    else if (type === 'movie') {
+        pageDetails = <DetailsMovie showItem={showItem} />
     }
-    else if(type === 'person'){
-        pageDetails = <DetailsPerson showItem={showItem}/>
+    else if (type === 'person') {
+        pageDetails = <DetailsPerson showItem={showItem} />
     }
 
-    return(
+    return (
         <Box>
             {pageDetails}
         </Box>
     )
-    
-
 }
 export default ShowDetails;

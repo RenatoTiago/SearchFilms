@@ -8,32 +8,32 @@ const searchInpunt = makeStyles((theme) => ({
 }));
 
 const modal = makeStyles((theme) => ({
-    modal: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-  }));
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+}));
 
-  const details = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-    },
-    details: {
-        display: 'flex',
-        flexDirection: 'column',
-      },
-    content: {
-        flex: '1 0 auto',
-    },
-    cover: {
-        width: 151,
-    },
-    body: {
-        display: 'flex',
-        alignItems: 'center',
-        paddingLeft: theme.spacing(1),
-        paddingBottom: theme.spacing(1),
-      },
-  }));
-  export {modal, details, searchInpunt};
+const details = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+  },
+  details: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  content: {
+    flex: '1 0 auto',
+  },
+  cover: {
+    width: 151,
+  },
+  body: {
+    display: 'flex',
+    alignItems: 'center',
+    paddingLeft: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+  },
+}));
+export { modal, details, searchInpunt };

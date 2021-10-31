@@ -4,34 +4,37 @@ import { details } from "../../css/styles";
 import { calculateAge, convertDateBR } from "../../helpers";
 import { getLastCast } from "../../services";
 
-type TProps ={
+type TProps = {
     showItem: any
 }
 
-const DetailsPerson:FunctionComponent<TProps> = ({showItem}) => {
+const DetailsPerson: FunctionComponent<TProps> = ({ showItem }) => {
+    
     const style = details();
     const [lastmovie, setLastMovie] = useState('')
 
     useEffect(() => {
-        if(!!showItem){
+        if (!!showItem) {
             getLastCast(showItem.id)
-            .then( data => {
-              let newdata = data.cast.map((obj: any)=>{ 
-                return {
-                    ...obj,
-                    data: new Date(obj.release_date) 
-                }
-              })
-              //console.log("with date",newdata)
-              newdata.sort((a:any, b:any)=>{
-                  return b.data - a.data
-              })
-              setLastMovie(newdata[0].title)
-            })
-        }
-      },[showItem]);
+                .then(data => {
+                    if (!!data.cast.length) {
+                        let newdata = data.cast.map((obj: any) => {
+                            return {
+                                ...obj,
+                                data: new Date(obj.release_date)
+                            }
+                        })
 
-    return(
+                        newdata.sort((a: any, b: any) => {
+                            return b.data - a.data
+                        })
+                        setLastMovie(newdata[0].title)
+                    }
+                })
+        }
+    }, [showItem]);
+
+    return (
         <Card className={style.root}>
             {!!showItem ? (<>
                 <div className={style.details}>
@@ -39,29 +42,26 @@ const DetailsPerson:FunctionComponent<TProps> = ({showItem}) => {
                         <Typography component="h5" variant="h5">
                             {showItem.name}
                         </Typography>
-                        
                     </CardContent>
                     <CardContent className={style.content}>
-                       
                         <Typography component="span" variant="subtitle1" color="textSecondary">
-                            Data de Nacimento: {convertDateBR(showItem.birthday) }
+                            Data de Nacimento: {convertDateBR(showItem.birthday)}
                         </Typography>
                         <Typography variant="subtitle1" color="textSecondary">
-                            Popularidade: {showItem.popularity}
+                            Popularidade: {showItem.popularity || "Não informado"}
                         </Typography>
                         <Typography variant="subtitle1" color="textSecondary">
                             Idade: {calculateAge(showItem.birthday)}
                         </Typography>
                         <Typography variant="subtitle1" color="textSecondary">
-                            Último Filme: {lastmovie}
+                            Último Filme: {lastmovie || "Não informado"}
                         </Typography>
                     </CardContent>
                 </div>
-            </>):
-            <CardContent>
-                Houve um problema
-            </CardContent>}
-            
+            </>) :
+                <CardContent>
+                    Houve um problema
+                </CardContent>}
         </Card>
     )
 }
